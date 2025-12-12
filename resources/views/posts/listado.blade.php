@@ -1,3 +1,4 @@
+@extends('plantilla')
 @section('title', 'Listado posts')
 
 @section('contenido')

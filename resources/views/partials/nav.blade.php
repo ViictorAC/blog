@@ -1,4 +1,5 @@
     <nav>
         <a href="{{ route('inicio') }}">Inicio</a>
-        <a href="{{ route('posts_listado') }}">Ficha</a>
+        &nbsp;&nbsp;
+        <a href="{{ route('posts_listado') }}">Listado de posts</a>
     </nav>
