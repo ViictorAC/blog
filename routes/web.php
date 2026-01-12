@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
+Route::resource('posts', PostController::class)->only(['index', 'show', 'create', 'edit']);
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio.inicio');
 })->name('inicio');
 
 Route::get('/posts', function () {
