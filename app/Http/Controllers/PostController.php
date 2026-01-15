@@ -2,62 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $posts = Post::orderBy('title', 'asc')->paginate(5);
+        return view('posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function show(string $id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
+    }
+
+    public function destroy(string $id)
+    {
+        Post::findOrFail($id)->delete();
+        return redirect()->route('posts.index');
+    }
+
+    public function nuevaPrueba()
+    {
+        $num = rand(1,999);
+        Post::create([
+            'title' => 'Titulo' . $num,
+            'content' => 'Contenido' . $num,
+        ]);
+        return redirect()->route('posts.index');
+    }
+
+   public function editarPrueba($id)
+    {
+        $num = rand(1, 1000);
+
+        $post = Post::findOrFail($id);
+        $post->update([
+            'title' => 'Título ' . $num,
+            'content' => 'Contenido ' . $num,
+        ]);
+
+        return redirect()->route('posts.show', $id);
+    }
+
+    public function edit(string $id)
+    {
+        return redirect('/');
+    }
+
     public function create()
     {
-        echo "Nuevo Post";
+        return redirect('/');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        echo "Edicion de Post";
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }
