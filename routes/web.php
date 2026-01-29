@@ -10,8 +10,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/posts/nuevaPrueba', [PostController::class, 'nuevaPrueba']);
-Route::get('/posts/editarPrueba/{id}', [PostController::class, 'editarPrueba']);
+Route::get('/posts/nuevaPrueba', [PostController::class, 'nuevaPrueba'])->name('posts.nuevaPrueba');
+Route::get('/posts/editarPrueba/{id}', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
 
 Route::resource('posts', PostController::class)
 ->only(['index', 'show', 'create', 'edit', 'destroy']);

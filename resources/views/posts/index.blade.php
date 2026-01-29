@@ -4,12 +4,15 @@
 @section('contenido')
     <h1>Listado de posts</h1>
 <ul>
+    <a href={{route('posts.nuevaPrueba') }}>
+        <button>Crear Post</button>
+    </a>
 @foreach ($posts as $post)
     <li>
         {{ $post->title }}
 
         <a href="{{ route('posts.show', $post->id) }}">
-            Ver
+            <button>Ver</button>
         </a>
 
         <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline">
@@ -19,6 +22,7 @@
         </form>
     </li>
 @endforeach
+
 </ul>
 <div class="d-flex justify-content-left">
     {{ $posts->links('pagination::bootstrap-5') }}
