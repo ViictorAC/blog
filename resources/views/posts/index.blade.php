@@ -9,7 +9,7 @@
     </a>
 @foreach ($posts as $post)
     <li>
-        {{ $post->title }}
+        {{ $post->title }} ({{ $post->relUser->login }})
 
         <a href="{{ route('posts.show', $post->id) }}">
             <button>Ver</button>
