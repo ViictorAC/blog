@@ -9,7 +9,12 @@
     </a>
 @foreach ($posts as $post)
     <li>
-        {{ $post->title }} ({{ $post->relUser->login }})
+        {{ $post->title }} 
+        @if ($post->relUser)
+            ({{ $post->relUser->login }})
+        @else
+            (Sin usuario)
+        @endif
 
         <a href="{{ route('posts.show', $post->id) }}">
             <button>Ver</button>
