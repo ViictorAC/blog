@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -51,21 +52,25 @@ class PostController extends Controller
 
     public function edit(string $id)
     {
-        return redirect('/');
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     public function create()
     {
-        return redirect('/');
+        return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        Post::create($request->validated());
+        return redirect()->route('posts.index');
     }
 
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->update($request->validated());
+        return redirect()->route('posts.show', $post->id);
     }
 }

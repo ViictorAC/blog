@@ -11,7 +11,7 @@
     <strong>Creado:</strong>
     {{ $post->created_at->format('d/m/Y H:i') }}
 </p>
-<a class="" href={{route('posts.editarPrueba', $post->id) }}>
+<a class="" href="{{ route('posts.edit', $post->id) }}">
         <button>Editar Post</button>
     </a>
 

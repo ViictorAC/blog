@@ -4,7 +4,7 @@
 @section('contenido')
     <h1>Listado de posts</h1>
 <ul>
-    <a href={{route('posts.nuevaPrueba') }}>
+    <a href="{{ route('posts.create') }}">
         <button>Crear Post</button>
     </a>
 @foreach ($posts as $post)
